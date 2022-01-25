@@ -1,53 +1,83 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-
-
-  /**
-   * state global variables
-   *  
-   * */ 
-  public float circleY = -50;
-
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
-  public void settings() {
-	  // put your size call here
-    size(200, 200);
-  }
-
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
-  public void setup() {
-    background(210, 255, 173);
-  }
-
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
-  public void draw() {
 	  
-    // clear out old frames
-    background(32);
+    
+    // sun
+    float sunSize = 150;
+    float sunSpeed = 3;
+    
+    // moon
+    float moonSize = 135;
+    float moonSpeed = 3;
+    
+    // size 
+    public float width = 1000;
+    public float height = 800;
 
-    // draw current frame based on state
-    ellipse(100, circleY, 50, 50);
-  
-    // modify state
-    circleY = circleY + 1;
-  
-    // reset state
-    if(circleY > height+50) {
-      circleY = 0;
+    // width and height scales
+    public float widthScale = width/350;
+    public float heightScale = height/350;  
+
+    // morning and night booleans
+    public boolean morning = false;
+    public boolean night = true;   
+
+    // ellipse size
+    public float circleX = 0;
+    public float circleY = 600;
+
+  public void settings() {
+    // size
+      size((int)width, (int)height);
     }
-  }
+
   
-  // define other methods down here.
+  public void draw() {
+	
+    if (morning) {
+      background(135,206,235);
+    }
+    else if(night) {
+      background(0,20,64);
+    }
 
+    if(morning) {
+      fill(255,255,0);
+    }
+    else if(night){
+      fill(255);
+    }
 
+    if (morning) {
+      ellipse(circleX, circleY, sunSize, sunSize);
+        
+      }
+      else if(night){
+      ellipse(circleX, circleY, moonSize, moonSize);
+     // setClip(ellipse);
+       
+     }
+
+   
+    
+    circleX += sunSpeed;
+    circleY = (float) ((0.005/widthScale) * (Math.pow(circleX-width/2,2)) + (75 * heightScale));
+
+    if(circleX > width + 75) {
+      circleX = 0;
+      circleY = 350 * heightScale;
+      if (night) {
+        morning = true;
+        night = false;
+      }
+       
+    else if(morning) {
+      night = true;
+      morning = false;
+      
+   }  
+  }
 }
+}
+  
