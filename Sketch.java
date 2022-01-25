@@ -2,14 +2,7 @@ import processing.core.PApplet;
 
 public class Sketch extends PApplet {
 	  
-    // size 
-    public float width = 1000f;
-    public float height = 800f;
-
-    // scale factor
-    public float widthScale = width/350f;
-    public float heightScale = height/350f;
-
+    
     // sun
     float sunSize = 150;
     float sunSpeed = 3;
@@ -17,15 +10,22 @@ public class Sketch extends PApplet {
     // moon
     float moonSize = 135;
     float moonSpeed = 3;
+    
+    // size 
+    public float width = 1000;
+    public float height = 800;
+
+    // width and height scales
+    public float widthScale = width/350;
+    public float heightScale = height/350;  
+
+    // morning and night booleans
+    public boolean morning = false;
+    public boolean night = true;   
 
     // ellipse size
     public float circleX = 0;
     public float circleY = 600;
-    
-
-    // day and night booleans
-    public boolean morning = true;
-    public boolean night = false;   
 
   public void settings() {
     // size
@@ -55,6 +55,7 @@ public class Sketch extends PApplet {
       }
       else if(night){
       ellipse(circleX, circleY, moonSize, moonSize);
+     // setClip(ellipse);
        
      }
 
@@ -77,8 +78,6 @@ public class Sketch extends PApplet {
       
    }  
   }
-  // grass
-  fill(76,153,0);
-  rect(0, 350 * heightScale, width, height - 300);
-  }
 }
+}
+  
