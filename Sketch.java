@@ -67,14 +67,14 @@ public class Sketch extends PApplet {
     if(circleX > width + 75) {
       circleX = 0;
       circleY = 350 * heightScale;
-      if (morning) {
-        morning = false;
-        night = true;
+      if (night) {
+        morning = true;
+        night = false;
       }
        
-    else if(night) {
-      night = false;
-      morning = true;
+    else if(morning) {
+      night = true;
+      morning = false;
       
    }  
   }
